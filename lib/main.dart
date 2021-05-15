@@ -4,15 +4,21 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  MyAppState createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
   var questionIndex = 0;
 
   void answerQuestion() {
-    questionIndex += 1;
+    setState(() {
+      questionIndex += 1;
+    });
     print(questionIndex);
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     var questions = [
@@ -22,6 +28,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Quizine',
+
       home: Scaffold(
         appBar: AppBar(
           title: Text("Quizine"),
